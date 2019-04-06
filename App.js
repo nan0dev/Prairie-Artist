@@ -16,6 +16,7 @@ import {
   StyleSheet,
   PixelRatio,
   TouchableHighlight,
+  TouchableOpacity,
   Alert
 } from 'react-native';
 
@@ -57,11 +58,17 @@ export default class PrairieArtist extends Component {
 
       
 
-        <View style={{position: 'absolute',  left: 0, right: 0, bottom: 77, alignItems: 'center'}}>
-        <TouchableHighlight style={localStyles.buttons}
+        <View style={{position: 'absolute', top:1, left: 0, right: 15, bottom: 0, alignItems: 'flex-end'}}>
+        <TouchableOpacity style={localStyles.buttons}
             onPress={this._resetExperience} >
             <Image source={require("./js/res/refresh.png")} />
-          </TouchableHighlight>
+          </TouchableOpacity>
+          </View>
+          
+          <View style={{position: 'absolute', right: 15, bottom: 20, alignItems: 'flex-end'}}>
+              <TouchableOpacity onPress={this._sresetExperience}>
+                    <Image source={require("./js/res/question.png")} />
+              </TouchableOpacity>
           </View>
            
 </View>
@@ -88,12 +95,12 @@ var localStyles = StyleSheet.create({
   },
 
   buttons : {
-    height: 72,
-    width: 72,
-    backgroundColor:'#00000000',
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#ffffff00',
+    // height: 62,
+    // width: 62,
+    // backgroundColor:'#00000000',
+    // borderRadius: 20,
+    // borderWidth: 1,
+    // borderColor: '#ffffff00',
   }
 });
 
