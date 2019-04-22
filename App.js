@@ -25,11 +25,9 @@ import {
   ViroARSceneNavigator
 } from 'react-viro';
 
-/*
- TODO: Insert your API key below
- */
+
  //configs
-let secret = require('./config');
+var secret = require('./config.json');
 var sharedProps = {
   apiKey: secret.KEY,
 }
