@@ -29,6 +29,7 @@ var ARCarDemo = createReactClass({
     return {
       playAnim: false,
       animateFlower: false,
+      scaleFlower: false
    
     }
   },
@@ -38,7 +39,7 @@ var ARCarDemo = createReactClass({
     return (
       <ViroARScene>
         <ViroARImageMarker target={"logo"} anchorDetectionTypes={this.PlanesVertical} onAnchorFound={this._onAnchorFound} pauseUpdates={this.state.pauseUpdates}>
-         <ViroNode scale={[0,0,0]} animation={{name:"scaleFlower", run: this.state.animateFlower,}}>
+         <ViroNode scale={[0,0,0]} animation={{name:"scaleFlower", run: this.state.scaleFlower, onFinish: this._animateFlower}}>
           <ViroAmbientLight color="#bcbbb8"/>
               <ViroSpotLight position={[0.3, 1, 0.6]}
                             color="#fff6ef"
@@ -72,7 +73,7 @@ var ARCarDemo = createReactClass({
   },
   _onAnchorFound() {
     this.setState({
-      animateFlower: true,
+      scaleFlower: true,
       pauseUpdates: true
     })
   },
@@ -83,9 +84,9 @@ var ARCarDemo = createReactClass({
     })
   },
  
-  _animateFinished(){
+  _animateFlower(){
     this.setState({
-     
+     animateFlower: true
     })
   },
 });
