@@ -8,15 +8,15 @@
     "test": "jest"
   },
   "dependencies": {
-    "react": "16.8.3",
-    "react-native": "^0.60.5",
-    "react-viro": "2.14.0"
+    "react": "^16.8.6",
+    "react-native": "^0.59.3",
+    "react-viro": "2.16.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "@babel/runtime": "^7.4.3",
-    "babel-jest": "^24.7.1",
-    "jest": "^24.7.1",
+    "@babel/core": "^7.6.2",
+    "@babel/runtime": "^7.6.2",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.53.1",
     "react-test-renderer": "16.8.3"
   },

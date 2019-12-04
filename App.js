@@ -17,7 +17,8 @@ import {
   PixelRatio,
   TouchableHighlight,
   TouchableOpacity,
-  Alert
+  Alert,
+  StatusBar
 } from 'react-native';
 
 import {
@@ -49,7 +50,10 @@ export default class PrairieArtist extends Component {
 
   render() {
      return (
+
+   
       <View style={localStyles.outer} >
+<StatusBar hidden />
 
      <ViroARSceneNavigator style={localStyles.arView} pbrEnabled = {true} {...this.state.sharedProps} ref={(arNav) => { this._arNav = arNav; }} 
         initialScene={{scene: InitialARScene, passProps:{displayObject:this.state.displayObject}}} viroAppProps={this.state.viroAppProps} />
@@ -86,10 +90,6 @@ export default class PrairieArtist extends Component {
 var localStyles = StyleSheet.create({
     outer : {
     flex : 1,
-  },
-
-  arView: {
-    flex:1,
   },
 
   buttons : {
