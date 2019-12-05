@@ -8,6 +8,8 @@
  */
 
 import React, { Component } from 'react';
+import FancyModal from './js/FancyModal.js';
+
 import {
   AppRegistry,
   Text,
@@ -18,6 +20,7 @@ import {
   TouchableHighlight,
   TouchableOpacity,
   Alert,
+  Button,
   StatusBar
 } from 'react-native';
 
@@ -26,6 +29,7 @@ import {
   ViroARSceneNavigator
 } from 'react-viro';
 
+// import FancyModal from './js/FancyModal.js';
 
  //configs
 var secret = require('./config.json');
@@ -54,23 +58,20 @@ export default class PrairieArtist extends Component {
    
       <View style={localStyles.outer} >
 <StatusBar hidden />
-
      <ViroARSceneNavigator style={localStyles.arView} pbrEnabled = {true} {...this.state.sharedProps} ref={(arNav) => { this._arNav = arNav; }} 
         initialScene={{scene: InitialARScene, passProps:{displayObject:this.state.displayObject}}} viroAppProps={this.state.viroAppProps} />
 
-      
+           
 
         <View style={{position: 'absolute', top:1, left: 0, right: 15, bottom: 0, alignItems: 'flex-end'}}>
+         
         <TouchableOpacity style={localStyles.buttons}
             onPress={this._resetExperience} >
             <Image source={require("./js/res/refresh.png")} />
           </TouchableOpacity>
           </View>
-          
-          <View style={{position: 'absolute', right: 15, bottom: 20, alignItems: 'flex-end'}}>
-              <TouchableOpacity onPress={this._sresetExperience}>
-                    <Image source={require("./js/res/question.png")} />
-              </TouchableOpacity>
+         <View style={{position: 'absolute', top:1, left: 0, right: 15, bottom: 0, alignItems: 'flex-start'}}>
+             <FancyModal> </FancyModal>
           </View>
            
 </View>

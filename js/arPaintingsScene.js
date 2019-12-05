@@ -1,8 +1,8 @@
 'use strict';
 
 import React, { Component } from 'react';
+import {Button, StyleSheet, Text, View, DeviceEventEmitter} from 'react-native';
 
-import {StyleSheet} from 'react-native';
 
 import {
   ViroARScene,
@@ -29,27 +29,37 @@ var ARCarDemo = createReactClass({
     return {
       playAnim: false,
       animateFlower: false,
-      scaleFlower: false
+      descaleFlower: false,
+      scaleFlower: false,
+      modalVisible: false
    
     }
   },
 
+
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  },
   render: function() {
     return (
-      <ViroARScene>
+       
+      <ViroARScene >
+     
         <ViroARImageMarker target={"cotton"} anchorDetectionTypes={this.PlanesVertical} onAnchorFound={this._onCottonAnchorFound} pauseUpdates={this.state.pauseUpdates}>
-         <ViroNode scale={[0,0,0]} animation={{name:"smallScale", run: this.state.scaleCotton, onFinish: this._animateCotton}}>
+         <ViroNode onClick={this._onCottonClick} scale={[0,0,0]} animation={{name:"smallScale", run: this.state.scaleCotton, onFinish: this._animateCotton}}>
           
             
          
           <Viro3DObject source={require('./res/objects/cotton/cotton.vrx')}
-           
+       
            type="VRX"
+          
            animation={
            {name:'cotton',
                       run:this.state.animateCotton,
                       loop:false,
                      duration:1500}}
+         
             
             />
        
@@ -65,7 +75,7 @@ var ARCarDemo = createReactClass({
         <ViroARImageMarker target={"flower"}   anchorDetectionTypes={this.PlanesVertical} onAnchorFound={this._onFlowerAnchorFound}  pauseUpdates={this.state.pauseUpdates}>
          
          <ViroNode scale={[0,0,0]} animation={{name:"scale", run: this.state.scaleFlower, onFinish: this._animateFlower}}>
-         <ViroNode  animation={{name:"descale", run: this.state.descaleFlower, onFinish: this._deanimateFlower}}>
+         <ViroNode onClick={this._onFlowerClick}  animation={{name:"descale", run: this.state.descaleFlower, onFinish: this._deanimateFlower}}>
          
           <ViroAmbientLight color="#bcbbb8"/>
               <ViroSpotLight position={[0.3, 1, 0.6]}
@@ -75,7 +85,7 @@ var ARCarDemo = createReactClass({
                             outerAngle={1000}
                           />
          
-          <Viro3DObject source={require('./res/objects/flower/flower.vrx')}
+          <Viro3DObject  source={require('./res/objects/flower/flower.vrx')}
            
            type="VRX"
            animation={
@@ -99,7 +109,21 @@ var ARCarDemo = createReactClass({
       </ViroARScene>
     );
   },
- 
+
+_onFlowerClick(position, source)  {
+    DeviceEventEmitter.emit('eventKey', {text:
+      "Artwork By:\nFrances Hairston\n\nAR Experience By:\nKordarius Johnson"
+     });
+
+   
+},
+_onCottonClick(position, source)  {
+    DeviceEventEmitter.emit('eventKey', {text: 
+    "Artwork By:\nFrances Hairston\n\nAR Experience By:\nKordarius Johnson and Elizabeth Ama"
+    });
+
+   
+},
   _onFlowerAnchorFound(scene) {
     this.setState({
       scaleFlower: true,
@@ -153,7 +177,7 @@ ViroARTrackingTargets.createTargets({
   },
   cotton: {
     source : require('./res/targets/Southern-Snow.jpg'),
-    orientation : "Up",
+    orientation : "Down",
     physicalWidth : 0.165 // real world width in meters
   }
 });
@@ -162,7 +186,7 @@ ViroAnimations.registerAnimations({
     
     scale:{properties:{scaleX:.06, scaleY:.06, scaleZ:.06,},
                   duration: 980, delay:500, easing: "EaseInEaseOut"},
-    smallScale:{properties:{scaleX:.009, scaleY:.009, scaleZ:.009,},
+    smallScale:{properties:{scaleX:.02, scaleY:.02, scaleZ:.02,},
                   duration: 980, delay:500, easing: "EaseInEaseOut"},              
     descale:{properties:{scaleX:0, scaleY:0, scaleZ:0,},
                   duration: 980, delay:500, easing: "EaseOut"}
